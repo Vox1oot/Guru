@@ -12,19 +12,12 @@ const Header = styled.header`
     padding: 2rem;
 `;
 
-const CardsWrapper = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-`;
-
 const Content: React.FC = () => (
     <Wrapper>
         <Header>
             <h1>Похожие объявления</h1>
         </Header>
-        <CardsWrapper>
-            <Cards />
-        </CardsWrapper>
+        <Cards />
     </Wrapper>
 );
 

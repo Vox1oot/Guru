@@ -1,8 +1,10 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
 import axios from 'axios';
 import styled from 'styled-components';
 import Card from '../Card/Card';
+import Loader from '../Card/Loader';
 
 import { ICard } from '../Card/Card.interface';
 
@@ -11,6 +13,11 @@ const Error = styled.div`
     padding: 20px;
     font-size: 25px;
     border: 2px solid #ff3333;
+`;
+
+const CardsWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
 `;
 
 const Cards: React.FC = () => {
@@ -35,9 +42,12 @@ const Cards: React.FC = () => {
     }
 
     return (
-        <>
-            { dataCards.map((card: ICard) => <Card key={card.id} {...card} />) }
-        </>
+        <CardsWrapper>
+            { dataCards.length === 0
+                ? [...new Array(16)].map((val, index) => <Loader key={index} />)
+                : dataCards.map((card: ICard) => <Card key={card.id} {...card} />)}
+        </CardsWrapper>
+
     );
 };
 

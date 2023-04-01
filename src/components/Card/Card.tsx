@@ -6,7 +6,7 @@ import Footer from './Footer';
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg';
 import { ICard } from './Card.interface';
 
-const CardWrapper = styled.div<{ isSeen: boolean }>`
+const CardWrapper = styled.div<{ isSeen?: boolean }>`
     position: relative;
     width: 320px;
     background-color: ${(props) => (props.isSeen ? '#fff6a5' : '#fff')};
@@ -57,13 +57,19 @@ const CardSeen = styled.span`
 const Card: React.FC<ICard> = ({ seen, ...props }) => {
     const [imgUrl, setImgUrl] = React.useState<string>('');
 
-    console.log(props);
-
     React.useEffect(() => {
         axios
             .get('https://source.unsplash.com/random/360x360')
             .then((response) => setImgUrl(response.request.responseURL));
     }, []);
+
+    if (!imgUrl) {
+        return (
+            <CardWrapper>
+                eferger
+            </CardWrapper>
+        );
+    }
 
     return (
         <CardWrapper isSeen={seen}>
