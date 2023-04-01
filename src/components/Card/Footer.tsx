@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { IFooter } from './Card.interface';
+
 import { ReactComponent as ShieldIcon } from '../../assets/svg/shield.svg';
 import { ReactComponent as CarIcon } from '../../assets/svg/car.svg';
 
@@ -25,11 +27,12 @@ const FooterRow1 = styled.div`
     `;
 
 const IconWrapp = styled.div`
-        flex-grow: 1;
-        svg path {
-            fill: green;
-        },
-    `;
+    flex-grow: 1;
+    svg:hover path{
+        fill: green;
+        cursor:pointer
+    },
+`;
 
 const OldPrice = styled.div`
     text-decoration: line-through;
@@ -54,10 +57,12 @@ const FooterRow2 = styled.div`
     color: #c7c7c7;
 `;
 
-const Footer = () => (
+const Footer: React.FC<IFooter> = ({
+    oldPrice, price, title, locality, date,
+}) => (
     <CardFooter>
         <FooterRow1>
-            <OldPrice>0 000 ₽</OldPrice>
+            <OldPrice>{`${oldPrice} ₽`}</OldPrice>
             <IconWrapp>
                 <CarIcon />
             </IconWrapp>
@@ -66,12 +71,12 @@ const Footer = () => (
             </IconWrapp>
         </FooterRow1>
         <CardPrice>
-            0 000 ₽
+            {`${price} ₽`}
         </CardPrice>
-        <CardTitle>Название товарной позиции</CardTitle>
+        <CardTitle>{title}</CardTitle>
         <FooterRow2>
-            <p>Город (15 симвл)</p>
-            <p>00.00.00, 00.0</p>
+            <p>{locality}</p>
+            <p>{new Date(date).getFullYear()}</p>
         </FooterRow2>
     </CardFooter>
 );

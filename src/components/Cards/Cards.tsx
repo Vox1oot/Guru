@@ -4,15 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Card from '../Card/Card';
 
-interface ICard {
-    id: string,
-    oldPrice: string,
-    price: string,
-    title: string,
-    seen: boolean,
-    locality: string,
-    date: number,
-}
+import { ICard } from '../Card/Card.interface';
 
 const Error = styled.div`
     text-align: center;
@@ -22,15 +14,13 @@ const Error = styled.div`
 `;
 
 const Cards: React.FC = () => {
-    const [data, setData] = React.useState<ICard[]>([]);
+    const [dataCards, setDataCards] = React.useState<ICard[]>([]);
     const [isError, setIsError] = React.useState(false);
-
-    console.log(data);
 
     React.useEffect(() => {
         axios.get('https://6075786f0baf7c0017fa64ce.mockapi.io/products')
             .then((response) => {
-                setData(response.data);
+                setDataCards(response.data);
             }).catch((err) => {
                 setIsError(true);
             });
@@ -45,7 +35,9 @@ const Cards: React.FC = () => {
     }
 
     return (
-        <Card />
+        <>
+            { dataCards.map((card: ICard) => <Card key={card.id} {...card} />) }
+        </>
     );
 };
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Footer from './Footer';
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg';
+import { ICard } from './Card.interface';
 
 const CardWrapper = styled.div<{ isSeen: boolean }>`
     position: relative;
@@ -13,6 +14,14 @@ const CardWrapper = styled.div<{ isSeen: boolean }>`
     border-radius: 20px 20px 8px 8px;
     margin: 20px;
     overflow: hidden;
+`;
+
+const IconWrapp = styled.div`
+    flex-grow: 1;
+    svg:hover path{
+        fill: green;
+        cursor:pointer
+    },
 `;
 
 const CardImg = styled.img`
@@ -45,10 +54,10 @@ const CardSeen = styled.span`
     background-color: #5e5e5c;
 `;
 
-const seen = true;
-
-const Card = () => {
+const Card: React.FC<ICard> = ({ seen, ...props }) => {
     const [imgUrl, setImgUrl] = React.useState<string>('');
+
+    console.log(props);
 
     React.useEffect(() => {
         axios
@@ -66,10 +75,12 @@ const Card = () => {
             <CardImgWrapper>
                 <CardImg src={imgUrl} />
                 <ImgIcons>
-                    <HeartIcon />
+                    <IconWrapp>
+                        <HeartIcon />
+                    </IconWrapp>
                 </ImgIcons>
             </CardImgWrapper>
-            <Footer />
+            <Footer {...props} />
         </CardWrapper>
     );
 };
