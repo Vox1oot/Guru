@@ -4,7 +4,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Card from '../Card/Card';
-import Loader from '../Card/Loader';
+import CardSkeleton from '../Card/CardSkeleton';
 
 import { ICard } from '../Card/Card.interface';
 
@@ -44,7 +44,7 @@ const Cards: React.FC = () => {
     return (
         <CardsWrapper>
             { dataCards.length === 0
-                ? [...new Array(16)].map((val, index) => <Loader key={index} />)
+                ? [...new Array(16)].map((val, index) => <CardSkeleton key={index} />)
                 : dataCards.map((card: ICard) => <Card key={card.id} {...card} />)}
         </CardsWrapper>
 

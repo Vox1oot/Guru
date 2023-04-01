@@ -3,12 +3,15 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import Footer from './Footer';
+import CardSpinner from './CardSpinner';
+
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg';
 import { ICard } from './Card.interface';
 
 const CardWrapper = styled.div<{ isSeen?: boolean }>`
     position: relative;
     width: 320px;
+    min-height: 470px;
     background-color: ${(props) => (props.isSeen ? '#fff6a5' : '#fff')};
     box-shadow: 0px 0px 10px 5px #eee;
     border-radius: 20px 20px 8px 8px;
@@ -66,7 +69,7 @@ const Card: React.FC<ICard> = ({ seen, ...props }) => {
     if (!imgUrl) {
         return (
             <CardWrapper>
-                eferger
+                <CardSpinner />
             </CardWrapper>
         );
     }
