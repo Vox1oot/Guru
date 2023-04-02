@@ -57,13 +57,18 @@ const CardSeen = styled.span`
     background-color: #5e5e5c;
 `;
 
-const Card: React.FC<ICard> = ({ seen, ...props }) => {
+const Card: React.FC<ICard> = ({ seen, onSetDownloaded, ...props }) => {
     const [imgUrl, setImgUrl] = React.useState<string>('');
+
+    console.log('Я згрузился');
 
     React.useEffect(() => {
         axios
             .get('https://source.unsplash.com/random/360x360')
-            .then((response) => setImgUrl(response.request.responseURL));
+            .then((response) => {
+                setImgUrl(response.request.responseURL);
+                onSetDownloaded();
+            });
     }, []);
 
     if (!imgUrl) {

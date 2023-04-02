@@ -8,5 +8,6 @@ export interface IFooter {
 }
 
 export interface ICard extends IFooter {
-    seen: boolean;
+    seen: boolean,
+    onSetDownloaded: () => void,
 }
