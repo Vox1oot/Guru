@@ -10,3 +10,5 @@
 3. ```$make build``` - create build
 4. ```$make clear``` - clear build dir
 5. ```$make lint``` - start eslint
+
+<strong>Go to</strong> -> [App](https://guru-kappa.vercel.app/)
