@@ -60,8 +60,6 @@ const CardSeen = styled.span`
 const Card: React.FC<ICard> = ({ seen, onSetDownloaded, ...props }) => {
     const [imgUrl, setImgUrl] = React.useState<string>('');
 
-    console.log('Я згрузился');
-
     React.useEffect(() => {
         axios
             .get('https://source.unsplash.com/random/360x360')

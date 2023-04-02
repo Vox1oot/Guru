@@ -1,12 +1,13 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 
+import { ToastContainer } from 'react-toastify';
 import axios from 'axios';
 import styled from 'styled-components';
-import { ToastContainer } from 'react-toastify';
-import toast from '../Toast';
+
 import Card from '../Card';
 import CardSkeleton from '../Card/CardSkeleton';
+import toast from '../Toast';
 
 import { ICard } from '../Card/Card.interface';
 
@@ -22,6 +23,7 @@ const Error = styled.div`
 const CardsWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 `;
 
 const CardMemo = React.memo(Card);
@@ -39,7 +41,7 @@ const Cards: React.FC = () => {
         axios.get('https://6075786f0baf7c0017fa64ce.mockapi.io/products')
             .then((response) => {
                 setDataCards(response.data);
-            }).catch((err) => {
+            }).catch(() => {
                 setIsError(true);
             });
     }, []);
