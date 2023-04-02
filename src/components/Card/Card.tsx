@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Footer from './Footer';
 import CardSpinner from './CardSpinner';
+import CardCarousel from './CardCarousel';
 
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg';
 import { ICard } from './Card.interface';
@@ -85,7 +86,7 @@ const Card: React.FC<ICard> = ({ seen, onSetDownloaded, ...props }) => {
                 </CardSeenWrapper>
             )}
             <CardImgWrapper>
-                <CardImg src={imgUrl} />
+                <CardCarousel url={imgUrl} />
                 <ImgIcons>
                     <IconWrapp>
                         <HeartIcon />
