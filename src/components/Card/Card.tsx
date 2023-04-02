@@ -28,11 +28,6 @@ const IconWrapp = styled.div`
     },
 `;
 
-const CardImg = styled.img`
-    display: block;
-    width: 100%;
-`;
-
 const ImgIcons = styled.div`
     position: absolute;
     right: 9px;
